@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    
+}
+body{
+    background-color: #f0f0f0;
+}
+header{
+    display: inline-block;
+    width: 100%;
+    padding: 25px 80px;
+    background-color: #f1f1f1;;
+    position: relative;
+}
+nav{
+    float: right;
+}
+nav ul li{
+    display: inline-block;
+    padding: 15px 25px;
+}
+nav ul li a{
+    text-decoration: none;
+    display: inline-block;
+    color: #000;
+    font-weight: 600;
+}
+
+.selected{
+    color: #000;
+}
+.noSelected{
+    color: grey;
+}
+
+.toggle-btn{
+    width: 35px;
+    position: absolute;
+    right: 80px;
+    top: 40px;
+}
+.toggle-btn span{
+    display: none;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    float: left;
+    margin-bottom: 8px;
+}
+.logo{
+    float: left;
+}
+.amarelo{
+    color: yellow;
+}
+.rosa{
+    color: pink;
+}
+.roxo{
+    color: purple;
+}
+.verde-agua{
+    color:aqua;
+}
+a{
+    font-family:  'Lilita One';
+}
+.texto{
+    font-family: 'Times New Roman', Times, serif;
+    margin: 5%;
+    padding: 5%;
+}
+@media (max-width: 900px) {
+    .toggle-btn{
+        width: 35px;
+        right: 30px;
+        top: 40px;
+        display: block;
+    }
+    .toggle-btn span{
+        display: inline-block;
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+        float: left;
+        margin-bottom: 8px;
+    }
+    nav{
+        display: none;
+        width: 100%;
+        border-top: 1px solid #000;
+        padding-top: 20px;
+        margin-top: 30px;
+    }
+    nav.show{
+        display:flex;
+    }
+    nav ul li{
+        width: 100%;
+        padding: 15px 0px;
+    }
+    
+    .direita{
+      display: none;
+    }
+    .containerimg{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+  }
+  @media (max-width: 450px) {
+    header{
+        padding: 10px 0px;
+    }
+    .logo{
+        margin: 0;
+        padding: 0;
+        float: left;
+    }
+    .navbar-brand{
+        margin: 2%;
+    }
+    .toggle-btn{
+        width: 35px;
+        right: 30px;
+        top: 40px;
+    }
+  }
+  @media (max-width: 367px){
+    .navbar-brand{
+        font-size: 20px;
+    }
+  }
+  @media (max-width: 280px){
+    .navbar-brand{
+        font-size: 16px;
+    }
+  }

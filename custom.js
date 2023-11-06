@@ -21,11 +21,15 @@ function validaForm(e) {
 
   const spanName = form.nome.nextElementSibling;
   const spanEmail = form.email.nextElementSibling;
+  const autorSim = form.querySelector('input[name="autor"][value="Sim"]');
+  const autorNao = form.querySelector('input[name="autor"][value="Nao"]');
+  const infoAutor = document.getElementById("infoAutor");
 
   spanName.textContent = "";
   spanEmail.textContent = "";
 
-  if (form.nome.value === "" || form.nome.value.indexOf(' ') <= 0) {
+  
+  if (form.nome.value === "" || form.nome.value.indexOf(' ') <= 0 ) {
     spanName.textContent = "Nome é Inválido!";
     formValido = false;
     form.nome.classList.add("error");
@@ -39,6 +43,13 @@ function validaForm(e) {
   } else {
     form.email.classList.remove("error");
   }
+  if (autorSim.checked) {
+    infoAutor.textContent = "Sim";
+  } else if (autorNao.checked) {
+    infoAutor.textContent = "Não";
+  } else {
+    infoAutor.textContent = "Não especificado";
+  }
 
   const assuntoOptions = form.querySelectorAll('input[name="assunto"]');
   let hasSelectedAssunto = false;
@@ -51,6 +62,7 @@ function validaForm(e) {
 
   if (!hasSelectedAssunto) {
     alert("Nenhum assunto para o contato foi selecionado");
+    formValido=false;
     e.preventDefault();
   }
 
@@ -58,11 +70,13 @@ function validaForm(e) {
     abrirModal("vis-modal");
     const infoNome = document.getElementById("infoNome");
     const infoEmail = document.getElementById("infoEmail");
-    const infoAssunto = document.getElementById("infoAssunto");
+    const infoAssuntos = document.getElementById("infoAssuntos");
+    const infoclienttext = document.getElementById("infoclienttext");
     const mensagemSucesso = document.getElementById("mensagemSucesso");
     
     infoNome.textContent = form.nome.value;
     infoEmail.textContent = form.email.value;
+    infoclienttext.textContent = form.clienttext.value;
 
     const assuntosSelecionados = [];
     const checkboxes = form.querySelectorAll('input[name="assunto"]');
@@ -75,16 +89,12 @@ function validaForm(e) {
     });
 
     if (assuntosSelecionados.length > 0) {
-      assuntosSelecionados.forEach(assunto => {
+      assuntosSelecionados.forEach(valores => {
         const li = document.createElement("li");
-        li.textContent = assunto;
-        infoAssunto.appendChild(li);
+        li.textContent = valores;
+        infoAssuntos.appendChild(li);
       });
-    } else {
-      const li = document.createElement("li");
-      li.textContent = "Nenhum assunto selecionado.";
-      infoAssunto.appendChild(li);
-    }
+    } 
     mensagemSucesso.style.display = "block"; 
     e.preventDefault();
     form.reset(); 

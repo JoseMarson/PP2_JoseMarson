@@ -14,6 +14,17 @@ function fecharModal(id) {
   var modal = document.getElementById(id);
   modal.style.display = 'none';
 }
+function resetform() {
+  var formulario = document.getElementById("formulario");
+
+  if (formulario) {
+    formulario.reset();
+    fecharModal("vis-modal");
+  }
+}
+function escapeHtml(unsafe) {
+  return unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+}
 
 function validaForm(e) {
   let form = e.target;
@@ -21,12 +32,14 @@ function validaForm(e) {
 
   const spanName = form.nome.nextElementSibling;
   const spanEmail = form.email.nextElementSibling;
+  const spanTexto = form.clienttext.nextElementSibling;
   const autorSim = form.querySelector('input[name="autor"][value="Sim"]');
   const autorNao = form.querySelector('input[name="autor"][value="Nao"]');
   const infoAutor = document.getElementById("infoAutor");
 
   spanName.textContent = "";
   spanEmail.textContent = "";
+  spanTexto.textContent = "";
 
   
   if (form.nome.value === "" || form.nome.value.indexOf(' ') <= 0 ) {
@@ -34,6 +47,7 @@ function validaForm(e) {
     formValido = false;
     form.nome.classList.add("error");
   } else {
+    form.nome.value = escapeHtml(form.nome.value);
     form.nome.classList.remove("error");
   }
   if (form.email.value === "" || form.email.value.indexOf('@') <= 1 || form.email.value.indexOf('.') <= (form.email.value.indexOf('@') + 1)) {
@@ -41,6 +55,7 @@ function validaForm(e) {
     formValido = false;
     form.email.classList.add("error");
   } else {
+    form.nome.value = escapeHtml(form.nome.value);
     form.email.classList.remove("error");
   }
   if (autorSim.checked) {
@@ -48,7 +63,16 @@ function validaForm(e) {
   } else if (autorNao.checked) {
     infoAutor.textContent = "Não";
   } else {
-    infoAutor.textContent = "Não especificado";
+    formValido = false;
+    alert("O campo de autoria de cursos é um requisito obrigatorio!")
+  }
+  if (form.clienttext.value === "") {
+    spanTexto.textContent = "Campo obrigatorio!";
+    formValido = false;
+    form.clienttext.classList.add("error");
+  } else {
+    form.nome.value = escapeHtml(form.nome.value);
+    form.clienttext.classList.remove("error");
   }
 
   const assuntoOptions = form.querySelectorAll('input[name="assunto"]');
@@ -97,7 +121,6 @@ function validaForm(e) {
     } 
     mensagemSucesso.style.display = "block"; 
     e.preventDefault();
-    form.reset(); 
   }
   if (!formValido){
         e.preventDefault();

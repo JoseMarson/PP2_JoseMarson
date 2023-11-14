@@ -12,28 +12,11 @@
         <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
     </head>
     <body>
-        <header>
-
-            <div class="toggle-btn" onclick="myfunction()">
-            <span></span>
-            <span></span>
-            <span></span>
-            </div>
-
-            <div class="logo">
-            <h1><a class="navbar-brand" href="#"> <img src="imgs/logo2.png" width="50px" alt=""> LEARN <span class="amarelo">C</span><span class="rosa">O</span><span class="roxo">D</span><span class="verde-agua">IN</span><span class="amarelo">G</span></a></h1>
-            </div>
-
-            <nav id="nav">
-                <ul>
-                    <li><a href="index.html" class="noSelected">Home</a></li>
-                    <li><a href="cursos.html" class="noSelected">Cursos</a></li>
-                    <li><a href="contato.html" class="selected">Contato</a></li>
-                </ul>
-            </nav>
-        </header>
+    <?php
+    include "header.php";
+  ?>
     <main>
-        <form action=""  name="formulario" method="post" id="formulario">
+        <form action="conexao.php"  name="formulario" method="post" id="formulario">
             <h2>Fale Conosco:</h2>
             <div>
                 <label for="nome"><img src="node_modules/bootstrap-icons/icons/person-circle.svg" alt="">  Nome Completo:</label>
@@ -47,19 +30,19 @@
             </div>
             <label for="assunto">Assunto:</label>
             <div>
-                <input type="checkbox" id="Sugestões" name="assunto" value="Sugestões de cursos">
+                <input type="checkbox" id="Sugestões" name="assunto[sugestoes]" value="Sugestões de cursos">
                 <label for="Sugestões">Sugestões de cursos</label>
             </div>
             <div>
-                <input type="checkbox" id="Criticas" name="assunto" value="Criticas">
+                <input type="checkbox" id="Criticas" name="assunto[criticas]" value="Criticas">
                 <label for="Criticas">Criticas</label>
             </div>
             <div>
-                <input type="checkbox" id="Elogios" name="assunto" value="Elogios">
+                <input type="checkbox" id="Elogios" name="assunto[elogios]" value="Elogios">
                 <label for="Elogios">Elogios</label>
             </div>
             <div>
-                <input type="checkbox" id="Outros" name="assunto" value="Outros">
+                <input type="checkbox" id="Outros" name="assunto[outros]" value="Outros">
                 <label for="Outros">Outros...</label>
             </div>
             <div>
@@ -98,12 +81,8 @@
           </div>
         </div>
       </dialog>
-
-    <footer class="text-center text-white" style="background-color: #f1f1f1;">
-        <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-          © 2023 Copyright:
-          <a class="text-dark" href="index.html">LearnCoding</a>
-        </div>
-    </footer>
+    <?php
+        include "footer.php";
+    ?>
     </body>
 </html>

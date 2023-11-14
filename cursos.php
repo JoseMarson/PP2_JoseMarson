@@ -17,27 +17,9 @@
         <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
     </head>
     <body>
-        <header>
-
-            <div class="toggle-btn" onclick="myfunction()">
-            <span></span>
-            <span></span>
-            <span></span>
-            </div>
-
-            <div class="logo">
-            <h1><a class="navbar-brand" href="#"> <img src="imgs/logo2.png" width="50px" alt=""> LEARN <span class="amarelo">C</span><span class="rosa">O</span><span class="roxo">D</span><span class="verde-agua">IN</span><span class="amarelo">G</span></a></h1>
-            </div>
-
-            <nav id="nav">
-                <ul>
-                    <li><a href="index.html" class="noSelected">Home</a></li>
-                    <li><a href="cursos.html" class="selected">Cursos</a></li>
-                    <li><a href="contato.html" class="noSelected">Contato</a></li>
-                </ul>
-            </nav>
-
-        </header>
+    <?php
+        include "header.php";
+    ?>
     <main>
         <h2>Recomendações de cursos:</h2>
         <div class="container">
@@ -137,11 +119,8 @@
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="app.js"></script>
     </main>
-    <footer class="text-center text-white" style="background-color: #f1f1f1;">
-        <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-          © 2023 Copyright:
-          <a class="text-dark" href="index.html">LearnCoding</a>
-        </div>
-    </footer>
+    <?php
+        include "footer.php";
+    ?>
     </body>
 </html>

@@ -75,7 +75,7 @@ function validaForm(e) {
     form.clienttext.classList.remove("error");
   }
 
-  const assuntoOptions = form.querySelectorAll('input[name="assunto"]');
+  const assuntoOptions = form.querySelectorAll('input[name^="assunto"]');
   let hasSelectedAssunto = false;
 
   assuntoOptions.forEach(option => {
@@ -103,7 +103,7 @@ function validaForm(e) {
     infoclienttext.textContent = form.clienttext.value;
 
     const assuntosSelecionados = [];
-    const checkboxes = form.querySelectorAll('input[name="assunto"]');
+    const checkboxes = form.querySelectorAll('input[name^="assunto"]');
 
     checkboxes.forEach(checkbox => {
       if (checkbox.checked) {

@@ -30,19 +30,19 @@
             </div>
             <label for="assunto">Assunto:</label>
             <div>
-                <input type="checkbox" id="Sugestões" name="assunto[sugestoes]" value="Sugestões de cursos">
+                <input type="checkbox" id="Sugestões" name="assunto[]" value="Sugestões de cursos">
                 <label for="Sugestões">Sugestões de cursos</label>
             </div>
             <div>
-                <input type="checkbox" id="Criticas" name="assunto[criticas]" value="Criticas">
+                <input type="checkbox" id="Criticas" name="assunto[]" value="Criticas">
                 <label for="Criticas">Criticas</label>
             </div>
             <div>
-                <input type="checkbox" id="Elogios" name="assunto[elogios]" value="Elogios">
+                <input type="checkbox" id="Elogios" name="assunto[]" value="Elogios">
                 <label for="Elogios">Elogios</label>
             </div>
             <div>
-                <input type="checkbox" id="Outros" name="assunto[outros]" value="Outros">
+                <input type="checkbox" id="Outros" name="assunto[]" value="Outros">
                 <label for="Outros">Outros...</label>
             </div>
             <div>

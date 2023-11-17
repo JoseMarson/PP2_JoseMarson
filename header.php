@@ -19,6 +19,7 @@ $current_page = basename($_SERVER['PHP_SELF'], '.php');
       <li><a href="index.php" <?php if ($current_page == 'index'){ echo 'class="selected"'; } else { echo 'class="noSelected"'; } ?>>Home</a></li>
       <li><a href="cursos.php" <?php if ($current_page == 'cursos') { echo 'class="selected"'; } else { echo 'class="noSelected"'; }?>>Cursos</a></li>
       <li><a href="contato.php" <?php if ($current_page == 'contato') { echo 'class="selected"'; } else { echo 'class="noSelected"'; } ?>>Contato</a></li>
+      <li><a href="forum.php" <?php if ($current_page == 'forum') { echo 'class="selected"'; } else { echo 'class="noSelected"'; } ?>>Forum</a></li>
     </ul>
 </nav>
 

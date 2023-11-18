@@ -19,12 +19,12 @@
         <form action="conexao.php"  name="formulario" method="post" id="formulario">
             <h2>Fale Conosco:</h2>
             <div>
-                <label for="nome"><img src="node_modules/bootstrap-icons/icons/person-circle.svg" alt="">  Nome Completo:</label>
+                <label for="nome"><img src="imgs/icons/person-circle.svg" alt="">  Nome Completo:</label>
                 <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo...">
                 <span></span>
             </div>
             <div>  
-                <label for="email"><img src="node_modules/bootstrap-icons/icons/envelope-at.svg" alt=""> E-mail:</label>
+                <label for="email"><img src="imgs/icons/envelope-at.svg" alt=""> E-mail:</label>
                 <input type="email" id="email" name="email" placeholder="Digite um e-mail válido...">
                 <span></span>
             </div>
@@ -75,9 +75,9 @@
                 <p><strong>Texto:</strong> <span id="infoclienttext"></span></p>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-primary" onclick="enviarFormulario()"> <img src="node_modules/bootstrap-icons/icons/check.svg" alt="">Confirmar</button>
-            <button class="btn btn-secondary" onclick="resetform()"><img src="node_modules/bootstrap-icons/icons/x.svg" alt="">Limpar</button>
-            <button class="btn btn-secondary alterar" onclick="fecharModal('vis-modal')"> <img src="node_modules/bootstrap-icons/icons/arrow-clockwise.svg" alt="">Alterar</button>
+            <button class="btn btn-primary" onclick="enviarFormulario()"> <img src="imgs/icons/check.svg" alt="">Confirmar</button>
+            <button class="btn btn-secondary" onclick="resetform()"><img src="imgs/icons/x.svg" alt="">Limpar</button>
+            <button class="btn btn-secondary alterar" onclick="fecharModal('vis-modal')"> <img src="imgs/icons/arrow-clockwise.svg" alt="">Alterar</button>
           </div>
         </div>
       </dialog>

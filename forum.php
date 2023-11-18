@@ -38,7 +38,7 @@
                     </select>
                 </div>
                 <div class="col-md-2 mb-2">
-                    <input type="image" src="node_modules/bootstrap-icons/icons/search.svg" alt="Submit" class="img-fluid">
+                    <input type="image" src="imgs/icons/search.svg" alt="Submit" class="img-fluid">
                 </div>
             </div>
         </form>
@@ -98,16 +98,21 @@
               
             <div class="container">
                 <div class="forum">
-                    <p><img src="node_modules/bootstrap-icons/icons/person-circle.svg" alt=""> Nome: <?php echo $value['nome'] ?></p>
-                    <p>Assuntos: <?php echo $value['assunto'] ?></p>
+                    <p><img src="imgs/icons/person-cicle.svg" alt=""> Nome: <?php echo htmlspecialchars($value['nome']); ?></p>
+                    <p>Assuntos: <?php echo htmlspecialchars($value['assunto']); ?></p>
                     <p>Autor: <?php echo ($value['autor'] == 1) ? 'Sim' : 'Não'; ?></p>
-                    <p>Mensagem: <?php echo $value['texto'] ?></p>
+                    <p>Mensagem: <?php echo htmlspecialchars($value['texto']); ?></p>
                 </div>
                 
             </div>
         
         </main>
         <?php
+            }
+            $totalItensRecuperados = count($consultas);
+
+            if ($totalItensRecuperados > 0) {
+                echo '<span class="badge badge-info">Total de ' . $totalItensRecuperados . ' itens correspondentes ao filtro</span>';
             }
 
             include "footer.php";

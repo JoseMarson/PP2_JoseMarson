@@ -20,6 +20,28 @@
             include "header.php";
         ?>
         <h1>Contatos Recebidos:</h1>
+        <form action="" name="filtro" method="post" id="filtro" class="mt-4">
+            <div class="form-row align-items-center">
+                <div class="col-md-4 mb-2">
+                    <label for="nome" class="sr-only">Buscar por nome</label>
+                    <input type="text" name="nome" class="form-control" placeholder="Buscar por nome">
+                </div>
+                <div class="col-md-4 mb-2">
+                    <label for="filtro" class="sr-only">Filtro:</label>
+                    <select name="filtro" id="filtro" class="form-control">
+                        <option value="" disabled selected>Buscar por assunto</option>
+                        <option value="todos">Todos</option>
+                        <option value="Sugestões de cursos">Sugestão</option>
+                        <option value="Criticas">Criticas</option>
+                        <option value="Elogios">Elogios</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+                <div class="col-md-2 mb-2">
+                    <input type="image" src="node_modules/bootstrap-icons/icons/search.svg" alt="Submit" class="img-fluid">
+                </div>
+            </div>
+        </form>
         <?php
 
             $hostname = "localhost";
@@ -33,15 +55,47 @@
             die("Conexão falhou: " . $mysqli->connect_error);
             }
 
-            $sql = $mysqli->prepare("SELECT * FROM formulario");
-            $sql->execute();
-            $consultas = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                
+                $filtro = isset($_POST['filtro']) ? $_POST['filtro'] : '';
+                $nome = isset($_POST["nome"]) ? $mysqli->real_escape_string($_POST["nome"]) : '';
 
+                $sql = "SELECT * FROM formulario";
+
+                if (!empty($nome)) {
+                    $sql .= " WHERE nome LIKE ?";
+                }
+
+                if ($filtro != 'todos') {
+                    $sql .= (!empty($nome) ? " AND" : " WHERE") . " FIND_IN_SET(?, assunto) > 0";;
+                }
+
+                $stmt = $mysqli->prepare($sql);
+
+                if (!empty($nome) && $filtro != 'todos') {
+                    $stmt->bind_param("ss", $nome, $filtro);
+                }
+                 elseif (!empty($nome)) {
+                    $stmt->bind_param("s", $nome);
+                }
+                elseif ($filtro != 'todos') {
+                    $stmt->bind_param("s", $filtro);
+                }
+
+                $stmt->execute();
+
+                $consultas = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+            }
+            else {
+           
+            $sql = "SELECT * FROM formulario";
+            $result = $mysqli->query($sql);
+            $consultas = $result->fetch_all(MYSQLI_ASSOC);
+        }
             foreach ($consultas as $value) {
         ?>
-        <main>
-            
-                
+        <main >
+              
             <div class="container">
                 <div class="forum">
                     <p><img src="node_modules/bootstrap-icons/icons/person-circle.svg" alt=""> Nome: <?php echo $value['nome'] ?></p>

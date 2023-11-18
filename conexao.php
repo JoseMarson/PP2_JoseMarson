@@ -22,7 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = "INSERT INTO formulario (nome, email, assunto, autor, texto) VALUES ('$nome', '$email', '$assunto', $autor, '$clienttext')";
 
     if ($mysqli->query($query) === TRUE) {
-        echo "Dados inseridos com sucesso!";
+       
+        echo "<script>alert('Dados inseridos com sucesso!'); window.location.href='index.php';</script>";
+        exit();
     } else {
         echo "Erro na inserção: " . $mysqli->error;
     }

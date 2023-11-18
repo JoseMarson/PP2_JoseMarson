@@ -11,67 +11,52 @@
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="cursos.css">
-        <title>Learn CODING - Forum</title>
+        
+        <title>Learn CODING - Cursos</title>
         <link rel="shortcut icon" href="imgs/favicon.ico" type="image/x-icon">
     </head>
     <body>
-    <?php
-        include "header.php";
+        <?php
+            include "header.php";
+        ?>
+        <h1>Contatos Recebidos:</h1>
+        <?php
 
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
-        $assuntos = $_POST['assunto'];
-        $autor = $_POST['autor'];
-        $clienttext = $_POST['clienttext'];
-    ?>
-    <main>
-    <div>
-            <!-- Formulário de Filtro -->
-            <form action="resultado.php" method="post" id="filtro-form">
-                <label for="filtro-nome">Filtrar por Nome:</label>
-                <input type="text" name="filtro-nome" id="filtro-nome" value="<?php echo isset($_POST['filtro-nome']) ? $_POST['filtro-nome'] : ''; ?>">
+            $hostname = "localhost";
+            $bancodedados = "PP2_JoseMarson";
+            $usuario = "root";
+            $senha = ""; 
 
-                <label for="filtro-autor">Filtrar por Autor:</label>
-                <select name="filtro-autor" id="filtro-autor">
-                    <option value="">Todos</option>
-                    <option value="Sim" <?php echo ($autor == 'Sim') ? 'selected' : ''; ?>>Sim</option>
-                    <option value="Nao" <?php echo ($autor == 'Nao') ? 'selected' : ''; ?>>Não</option>
-                </select>
+            $mysqli = new mysqli($hostname, $usuario, $senha, $bancodedados);
 
-                <label for="filtro-assunto">Filtrar por Assunto:</label>
-                <select name="filtro-assunto" id="filtro-assunto">
-                    <option value="">Todos</option>
-                    <option value="Sugestões de cursos" <?php echo in_array('Sugestões de cursos', $assuntos) ? 'selected' : ''; ?>>Sugestões de cursos</option>
-                    <option value="Criticas" <?php echo in_array('Criticas', $assuntos) ? 'selected' : ''; ?>>Críticas</option>
-                    <option value="Elogios" <?php echo in_array('Elogios', $assuntos) ? 'selected' : ''; ?>>Elogios</option>
-                    <option value="Outros" <?php echo in_array('Outros', $assuntos) ? 'selected' : ''; ?>>Outros</option>
-                </select>
+            if ($mysqli->connect_error) {
+            die("Conexão falhou: " . $mysqli->connect_error);
+            }
 
-                <button type="submit">Filtrar</button>
-            </form>
+            $sql = $mysqli->prepare("SELECT * FROM formulario");
+            $sql->execute();
+            $consultas = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
 
-            <!-- Dados Recebidos -->
-            <h2>Dados Recebidos:</h2>
-            <p><strong>Nome:</strong> <?php echo $nome; ?></p>
-            <p><strong>Email:</strong> <?php echo $email; ?></p>
-            <p><strong>Autor de cursos aqui disponibilizados:</strong> <?php echo $autor; ?></p>
-            <p><strong>Assuntos selecionados:</strong></p>
-            <ul>
-                <?php
-                foreach ($assuntos as $assunto) {
-                    echo "<li>$assunto</li>";
-                }
-                ?>
-            </ul>
-            <p><strong>Texto:</strong> <?php echo $clienttext; ?></p>
-        </div>
-    </main>
-    
-    </main>
-    <?php
-        include "footer.php";
-    ?>
+            foreach ($consultas as $value) {
+        ?>
+        <main>
+            
+                
+            <div class="container">
+                <div class="forum">
+                    <p><img src="node_modules/bootstrap-icons/icons/person-circle.svg" alt=""> Nome: <?php echo $value['nome'] ?></p>
+                    <p>Assuntos: <?php echo $value['assunto'] ?></p>
+                    <p>Autor: <?php echo ($value['autor'] == 1) ? 'Sim' : 'Não'; ?></p>
+                    <p>Mensagem: <?php echo $value['texto'] ?></p>
+                </div>
+                
+            </div>
+        
+        </main>
+        <?php
+            }
+
+            include "footer.php";
+        ?>
     </body>
 </html>

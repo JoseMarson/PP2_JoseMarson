@@ -57,7 +57,7 @@
                 <textarea name="clienttext" id="clienttext" maxlength="20000" cols="1" rows="5"></textarea>
                 <span></span>
             </div>
-            <button>Enviar</button>
+            <button class="btn btn-primary">Enviar</button>
             
         </form>
     </main>
